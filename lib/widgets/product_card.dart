@@ -21,7 +21,7 @@ class ProductCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 60,
+          bottom: 1,
           child: Container(
             width: MediaQuery.of(context).size.width / 2.5,
             height: 60,
@@ -31,7 +31,7 @@ class ProductCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 65,
+          bottom: 1,
           child: Container(
             width: MediaQuery.of(context).size.width / 2.5 - 10,
             height: 50,
