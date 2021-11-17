@@ -27,14 +27,14 @@ class ProductScreen extends StatelessWidget {
       // ignore: prefer_const_constructors
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
-        child: Container(
+        child: SizedBox(
           height: 70,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   Icons.share,
                   color: Colors.white,
                 ),
