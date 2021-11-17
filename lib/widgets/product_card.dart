@@ -29,7 +29,7 @@ class ProductCard extends StatelessWidget {
       },
       child: Stack(
         children: [
-          Container(
+          SizedBox(
             width: widthValue,
             height: 150,
             child: Image.network(
@@ -54,7 +54,7 @@ class ProductCard extends StatelessWidget {
             child: Container(
               width: widthValue - 10 - leftPosition,
               height: 50,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.black,
               ),
               child: Padding(
@@ -68,13 +68,13 @@ class ProductCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${product.name}',
+                            product.name,
                             style: Theme.of(context)
                                 .textTheme
                                 .headline5!
                                 .copyWith(color: Colors.white),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 2,
                           ),
                           Text(
@@ -90,7 +90,7 @@ class ProductCard extends StatelessWidget {
                     Expanded(
                       child: IconButton(
                         onPressed: () {},
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.add_circle,
                           color: Colors.white,
                         ),
@@ -101,23 +101,23 @@ class ProductCard extends StatelessWidget {
                             builder: (context, state) {
                               return IconButton(
                                 onPressed: () {
-                                  context
-                                      .read<WishlistBloc>()
-                                      .add(RemoveWishlistProduct(product));
-                                  final snackBar = SnackBar(
+                                  context.read<WishlistBloc>().add(
+                                      RemoveWishlistProduct(product: product));
+                                  // ignore: prefer_const_declarations
+                                  final snackBar = const SnackBar(
                                       content: Text(
                                           'Product removed from your wishlist!'));
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(snackBar);
                                 },
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.delete,
                                   color: Colors.white,
                                 ),
                               );
                             },
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                   ],
                 ),
               ),
