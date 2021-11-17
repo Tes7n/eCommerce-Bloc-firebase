@@ -103,7 +103,7 @@ class ProductCard extends StatelessWidget {
                                 onPressed: () {
                                   context
                                       .read<WishlistBloc>()
-                                      .add(RemoveWishlistProduct(product));
+                                      .add(RemoveWishlistProduct(product: product));
                                   final snackBar = SnackBar(
                                       content: Text(
                                           'Product removed from your wishlist!'));
