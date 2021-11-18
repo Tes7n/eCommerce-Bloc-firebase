@@ -25,7 +25,7 @@ class WishlistScreen extends StatelessWidget {
       body: BlocBuilder<WishlistBloc, WishlistState>(
         builder: (context, state) {
           if (state is WishlistLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           }
@@ -52,7 +52,7 @@ class WishlistScreen extends StatelessWidget {
               },
             );
           } else {
-            return Text("Something went wrong!");
+            return const Text("Something went wrong!");
           }
         },
       ),
