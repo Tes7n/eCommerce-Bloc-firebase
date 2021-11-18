@@ -25,15 +25,15 @@ class Product extends Equatable {
         name: 'Drink1',
         category: 'Soft Drink',
         imageUrl:
-            'https://media.istockphoto.com/photos/coke-picture-id458464735?k=20&m=458464735&s=612x612&w=0&h=CW8rzEiIMvuO23X9I3b6U_g2aBUQSZnWYLjWauLMxtg=',
+            'https://images.unsplash.com/photo-1559019736-dcf2caefe954?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fGNhbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
         price: 2.99,
         isRecommended: true,
-        isPopular: false),
+        isPopular: true),
     Product(
         name: 'Drink2',
         category: 'Soft Drink',
         imageUrl:
-            'https://media.istockphoto.com/photos/pepsi-can-with-water-droplets-picture-id459396911?k=20&m=459396911&s=612x612&w=0&h=aI3BywjC-1zg09TfLaoqLVvZbjsAuTEGTzhJ5sCreoY=',
+            'https://images.unsplash.com/photo-1586401003307-f0c6b1e65c41?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
         price: 2.19,
         isRecommended: true,
         isPopular: false),
@@ -41,15 +41,15 @@ class Product extends Equatable {
         name: 'Drink3',
         category: 'Soft Drink',
         imageUrl:
-            'https://media.istockphoto.com/vectors/template-design-for-orange-cola-aluminum-can-vector-id846279482?k=20&m=846279482&s=612x612&w=0&h=xbIovxxHGNlzYZt7BiF_v__Uk1Q27kR0rbNz-AQrUY4=',
+            'https://images.unsplash.com/photo-1531384370597-8590413be50a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y2FufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
         price: 1.98,
-        isRecommended: false,
+        isRecommended: true,
         isPopular: true),
     Product(
         name: 'Drink4',
         category: 'Smoothies',
         imageUrl:
-            'https://media.istockphoto.com/photos/glass-of-blueberry-milkshake-or-cocktail-picture-id673492292?k=20&m=673492292&s=612x612&w=0&h=2ONm-OSJg3zxr-Qew_1eMMolqQ9bmrsyn2HVXQ1n6u0=',
+            'https://images.unsplash.com/photo-1553530666-ba11a7da3888?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c21vb3RoaWV8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
         price: 2.99,
         isRecommended: true,
         isPopular: false),
@@ -57,9 +57,9 @@ class Product extends Equatable {
         name: 'Drink5',
         category: 'Smoothies',
         imageUrl:
-            'https://media.istockphoto.com/photos/glass-of-kiwi-smoothie-picture-id1046212566?k=20&m=1046212566&s=612x612&w=0&h=Y5xsZS2Fk84RLLpvGU5049Rf0YprPTGC3uQ4uo2QsxM=',
+            'https://images.unsplash.com/photo-1610970881699-44a5587cabec?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHNtb290aGllfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
         price: 2.19,
-        isRecommended: false,
+        isRecommended: true,
         isPopular: true),
   ];
 }
