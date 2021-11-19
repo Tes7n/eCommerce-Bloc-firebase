@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_bloc/blocs/blocs.dart';
 import 'package:ecommerce_bloc/models/models.dart';
 import 'package:ecommerce_bloc/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductScreen extends StatelessWidget {
   final Product product;
@@ -25,32 +27,54 @@ class ProductScreen extends StatelessWidget {
       // ignore: prefer_const_constructors
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
-        child: Container(
+        child: SizedBox(
           height: 70,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   Icons.share,
                   color: Colors.white,
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.favorite,
-                  color: Colors.white,
-                ),
+              BlocBuilder<WishlistBloc, WishlistState>(
+                builder: (context, state) {
+                  return IconButton(
+                    onPressed: () {
+                      context
+                          .read<WishlistBloc>()
+                          .add(AddWishlistProduct(product: product));
+                      // ignore: prefer_const_declarations
+                      final snackBar = const SnackBar(
+                        content: Text('Added to your wishlist!'),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
+                    icon: const Icon(
+                      Icons.favorite,
+                      color: Colors.white,
+                    ),
+                  );
+                },
               ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(primary: Colors.white),
-                child: Text(
-                  'ADD TO CART',
-                  style: Theme.of(context).textTheme.headline3,
-                ),
+              BlocBuilder<CartBloc, CartState>(
+                builder: (context, state) {
+                  return ElevatedButton(
+                    onPressed: () {
+                      context.read<CartBloc>().add(
+                            CartProductAdded(product: product),
+                          );
+                      Navigator.pushNamed(context, '/cart');
+                    },
+                    style: ElevatedButton.styleFrom(primary: Colors.white),
+                    child: Text(
+                      'ADD TO CART',
+                      style: Theme.of(context).textTheme.headline3,
+                    ),
+                  );
+                },
               ),
             ],
           ),

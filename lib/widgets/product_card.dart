@@ -1,13 +1,19 @@
+import 'package:ecommerce_bloc/blocs/blocs.dart';
 import 'package:ecommerce_bloc/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
   final double widthFactor;
+  final double leftPosition;
+  final bool isWishlist;
   const ProductCard({
     Key? key,
     required this.product,
     this.widthFactor = 2.5,
+    this.leftPosition = 5,
+    this.isWishlist = false,
   }) : super(key: key);
 
   @override
@@ -23,7 +29,7 @@ class ProductCard extends StatelessWidget {
       },
       child: Stack(
         children: [
-          Container(
+          SizedBox(
             width: widthValue,
             height: 150,
             child: Image.network(
@@ -33,8 +39,9 @@ class ProductCard extends StatelessWidget {
           ),
           Positioned(
             bottom: 1,
+            left: leftPosition,
             child: Container(
-              width: widthValue,
+              width: widthValue - leftPosition,
               height: 60,
               decoration: BoxDecoration(
                 color: Colors.black.withAlpha(50),
@@ -43,10 +50,11 @@ class ProductCard extends StatelessWidget {
           ),
           Positioned(
             bottom: 1,
+            left: leftPosition + 5,
             child: Container(
-              width: widthValue - 10,
+              width: widthValue - 10 - leftPosition,
               height: 50,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.black,
               ),
               child: Padding(
@@ -60,11 +68,14 @@ class ProductCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '${product.name}',
+                            product.name,
                             style: Theme.of(context)
                                 .textTheme
                                 .headline5!
                                 .copyWith(color: Colors.white),
+                          ),
+                          const SizedBox(
+                            height: 2,
                           ),
                           Text(
                             '\$${product.price}',
@@ -76,15 +87,61 @@ class ProductCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Expanded(
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.add_circle,
-                          color: Colors.white,
-                        ),
-                      ),
+                    BlocBuilder<CartBloc, CartState>(
+                      builder: (context, state) {
+                        if (state is CartLoading) {
+                          return Container(
+                            color: Colors.amber,
+                          );
+                        }
+                        if (state is CartLoaded) {
+                          return Expanded(
+                            child: IconButton(
+                              onPressed: () {
+                                context.read<CartBloc>().add(
+                                      CartProductAdded(product: product),
+                                    );
+                                const snackBar = SnackBar(
+                                  content: Text('Added to your wishlist!'),
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              },
+                              icon: const Icon(
+                                Icons.add_circle,
+                                color: Colors.white,
+                              ),
+                            ),
+                          );
+                        } else {
+                          return Container(
+                            color: Colors.amber,
+                          );
+                        }
+                      },
                     ),
+                    isWishlist
+                        ? BlocBuilder<WishlistBloc, WishlistState>(
+                            builder: (context, state) {
+                              return IconButton(
+                                onPressed: () {
+                                  context.read<WishlistBloc>().add(
+                                      RemoveWishlistProduct(product: product));
+                                  // ignore: prefer_const_declarations
+                                  final snackBar = const SnackBar(
+                                      content: Text(
+                                          'Product removed from your wishlist!'));
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(snackBar);
+                                },
+                                icon: const Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                ),
+                              );
+                            },
+                          )
+                        : const SizedBox(),
                   ],
                 ),
               ),

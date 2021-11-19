@@ -23,9 +23,11 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: CustomNavBar(),
       // ignore: avoid_unnecessary_containers
       body: SingleChildScrollView(
+        // ignore: avoid_unnecessary_containers
         child: Container(
           child: Column(
             children: [
+              // ignore: avoid_unnecessary_containers
               Container(
                 child: CarouselSlider(
                   options: CarouselOptions(

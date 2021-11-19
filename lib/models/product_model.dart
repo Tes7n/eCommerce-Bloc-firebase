@@ -8,6 +8,7 @@ class Product extends Equatable {
   final bool isRecommended;
   final bool isPopular;
 
+  // ignore: prefer_const_constructors_in_immutables
   Product(
       {required this.name,
       required this.category,

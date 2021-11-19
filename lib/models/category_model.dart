@@ -4,6 +4,7 @@ class Category extends Equatable {
   final String name;
   final String imageUrl;
 
+  // ignore: prefer_const_constructors_in_immutables
   Category({required this.name, required this.imageUrl});
 
   @override
