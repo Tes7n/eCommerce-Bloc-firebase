@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class Product extends Equatable {
@@ -16,6 +17,19 @@ class Product extends Equatable {
       required this.price,
       required this.isRecommended,
       required this.isPopular});
+
+  // f() to covert Doc.snapshot to Category instance
+  static Product fromSnapshot(DocumentSnapshot snap) {
+    Product product = Product(
+      name: snap['name'],
+      imageUrl: snap['imageUrl'],
+      category: snap['category'],
+      isPopular: snap['isPopular'],
+      isRecommended: snap['isRecommended'],
+      price: snap['price'],
+    );
+    return product;
+  }
 
   @override
   List<Object?> get props =>

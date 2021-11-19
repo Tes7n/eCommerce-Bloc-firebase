@@ -1,10 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecommerce_bloc/blocs/category/category_bloc.dart';
+import 'package:ecommerce_bloc/blocs/product/product_bloc.dart';
 import 'package:ecommerce_bloc/models/category_model.dart';
 import 'package:ecommerce_bloc/models/models.dart';
 import 'package:ecommerce_bloc/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -29,30 +32,63 @@ class HomeScreen extends StatelessWidget {
             children: [
               // ignore: avoid_unnecessary_containers
               Container(
-                child: CarouselSlider(
-                  options: CarouselOptions(
-                      aspectRatio: 1.5,
-                      viewportFraction: 0.9,
-                      enlargeCenterPage: true,
-                      enlargeStrategy: CenterPageEnlargeStrategy.height,
-                      enableInfiniteScroll: true,
-                      initialPage: 2),
-                  items: Category.category
-                      .map((e) => HeroCarouselCard(category: e))
-                      .toList(),
+                child: BlocBuilder<CategoryBloc, CategoryState>(
+                  builder: (context, state) {
+                    if (state is CategoryLoading) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+                    if (state is CategoryLoaded) {
+                      return CarouselSlider(
+                        options: CarouselOptions(
+                            aspectRatio: 1.5,
+                            viewportFraction: 0.9,
+                            enlargeCenterPage: true,
+                            enlargeStrategy: CenterPageEnlargeStrategy.height,
+                            enableInfiniteScroll: true,
+                            initialPage: 2),
+                        items: state.categories
+                            .map((e) => HeroCarouselCard(category: e))
+                            .toList(),
+                      );
+                    } else {
+                      return Center(child: Text('something went wrong!'));
+                    }
+                  },
                 ),
               ),
               SectionTitle(title: 'RECOMMENDED'),
-              ProductCarousel(
-                products: Product.products
-                    .where((element) => element.isRecommended)
-                    .toList(),
+              BlocBuilder<ProductBloc, ProductState>(
+                builder: (context, state) {
+                  if (state is ProductLoading) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  if (state is ProductLoaded) {
+                    return ProductCarousel(
+                      products: state.products
+                          .where((element) => element.isRecommended)
+                          .toList(),
+                    );
+                  } else {
+                    return Center(child: Text('something went wrong!'));
+                  }
+                },
               ),
               SectionTitle(title: 'POPULAR'),
-              ProductCarousel(
-                products: Product.products
-                    .where((element) => element.isPopular)
-                    .toList(),
+              BlocBuilder<ProductBloc, ProductState>(
+                builder: (context, state) {
+                  if (state is ProductLoading) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  if (state is ProductLoaded) {
+                    return ProductCarousel(
+                      products: state.products
+                          .where((element) => element.isPopular)
+                          .toList(),
+                    );
+                  } else {
+                    return Center(child: Text('something went wrong!'));
+                  }
+                },
               ),
             ],
           ),
