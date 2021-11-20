@@ -92,7 +92,10 @@ class CartScreen extends StatelessWidget {
                                   .productQuantity(state.cart.products)
                                   .values
                                   .elementAt(index),
-                              product: state.cart.products[index],
+                              product: state.cart
+                                  .productQuantity(state.cart.products)
+                                  .keys
+                                  .elementAt(index),
                             );
                           },
                         ),
