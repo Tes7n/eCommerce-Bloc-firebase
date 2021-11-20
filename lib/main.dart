@@ -4,6 +4,7 @@ import 'package:ecommerce_bloc/config/app_router.dart';
 import 'package:ecommerce_bloc/config/theme.dart';
 import 'package:ecommerce_bloc/repositories/category/category_repository.dart';
 import 'package:ecommerce_bloc/repositories/product/product_repository.dart';
+import 'package:ecommerce_bloc/screens/checkout/checkout_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'blocs/blocs.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
         title: 'Zero To Unicorn',
         theme: theme(),
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: HomeScreen.routeName,
+        initialRoute: CheckoutScreen.routeName,
       ),
     );
   }

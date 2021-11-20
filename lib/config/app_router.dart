@@ -1,5 +1,6 @@
 import 'package:ecommerce_bloc/models/category_model.dart';
 import 'package:ecommerce_bloc/models/models.dart';
+import 'package:ecommerce_bloc/screens/checkout/checkout_screen.dart';
 import 'package:ecommerce_bloc/screens/screens.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +24,9 @@ class AppRouter {
 
       case WishlistScreen.routeName:
         return WishlistScreen.route();
+
+      case CheckoutScreen.routeName:
+        return CheckoutScreen.route();
 
       default:
         return _errorRoute();
