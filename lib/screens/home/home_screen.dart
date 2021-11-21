@@ -3,8 +3,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_bloc/blocs/category/category_bloc.dart';
 import 'package:ecommerce_bloc/blocs/product/product_bloc.dart';
-import 'package:ecommerce_bloc/models/category_model.dart';
-import 'package:ecommerce_bloc/models/models.dart';
 import 'package:ecommerce_bloc/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
