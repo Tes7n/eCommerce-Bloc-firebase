@@ -4,11 +4,12 @@ import 'package:ecommerce_bloc/config/app_router.dart';
 import 'package:ecommerce_bloc/config/theme.dart';
 import 'package:ecommerce_bloc/repositories/category/category_repository.dart';
 import 'package:ecommerce_bloc/repositories/product/product_repository.dart';
-import 'package:ecommerce_bloc/screens/checkout/checkout_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'blocs/blocs.dart';
+import 'blocs/checkout/checkout_bloc.dart';
 import 'blocs/product/product_bloc.dart';
+import 'repositories/checkout/checkout_repository.dart';
 import 'screens/screens.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,6 +34,12 @@ class MyApp extends StatelessWidget {
           create: (_) => CartBloc()..add(CartStarted()),
         ),
         BlocProvider(
+          create: (context) => CheckoutBloc(
+            cartBloc: context.read<CartBloc>(),
+            checkoutRepository: CheckoutRepository(),
+          ),
+        ),
+        BlocProvider(
           create: (_) => CategoryBloc(categoryRepository: CategoryRepository())
             ..add(
               LoadCategories(),
@@ -49,7 +56,7 @@ class MyApp extends StatelessWidget {
         title: 'Zero To Unicorn',
         theme: theme(),
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: CheckoutScreen.routeName,
+        initialRoute: HomeScreen.routeName,
       ),
     );
   }
